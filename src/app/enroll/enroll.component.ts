@@ -11,6 +11,7 @@ export class EnrollComponent implements OnInit {
   birth !: string;
   email !: string;
   password !: string;
+  gender !: string;
   isFull = false;
 
   emailFormControl = new FormControl('', [
@@ -39,6 +40,7 @@ export class EnrollComponent implements OnInit {
     if(this.name === undefined || this.birth === undefined || this.email === undefined || this.password === undefined){
       console.log("fail");
       console.log(this.isFull);
+      alert("회원가입을 다시 진행해주세요.")
     } 
     else{
       console.log("success");
@@ -47,6 +49,15 @@ export class EnrollComponent implements OnInit {
     }
   }
 
+  clickMan(){
+    console.log("click man");
+    this.gender = "man";
+  }
+
+  clickWoman(){
+    console.log("click woman");
+    this.gender = "woman";
+  }
   ngOnInit(): void {
   }
 

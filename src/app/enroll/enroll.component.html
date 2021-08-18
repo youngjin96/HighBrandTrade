@@ -3,49 +3,49 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>이름</mat-label>
-            <input type="name" matInput [(ngModel)]="name" [formControl]="nameFormControl" placeholder="Ex. 홍길동">
+            <input matInput [(ngModel)]="name" [formControl]="nameFormControl" placeholder="Ex. 홍길동">
             <mat-error *ngIf="nameFormControl.hasError('required')">
-                이름을 입력하세요
+                이름을 입력하세요.
             </mat-error>
         </mat-form-field>
         <br>
 
         <mat-form-field class="example-full-width">
             <mat-label>생년월일</mat-label>
-            <input type="birth" matInput [(ngModel)]="birth" [formControl]="birthFormControl" placeholder="Ex. 961007">
+            <input matInput [(ngModel)]="birth" [formControl]="birthFormControl" placeholder="Ex. 961007">
             <mat-error *ngIf="birthFormControl.hasError('maxlength') || birthFormControl.hasError('minlength')">
-                6자리를 입력하세요
+                6자리를 입력하세요.
             </mat-error>
             <mat-error *ngIf="birthFormControl.hasError('required')">
-                생년월일을 입력하세요
+                생년월일을 입력하세요.
             </mat-error>
         </mat-form-field>
         <br>
 
         <mat-form-field class="example-full-width">
           <mat-label>Email</mat-label>
-          <input type="email" matInput [(ngModel)]="email" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+          <input matInput [(ngModel)]="email" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                이메일 주소 형식으로 입력하세요
+                이메일 주소 형식으로 입력하세요.
           </mat-error>
           <mat-error *ngIf="emailFormControl.hasError('required')">
-                이메일을 입력하세요
+                이메일을 입력하세요.
           </mat-error>
         </mat-form-field>
         <br>
 
         <mat-form-field class="example-full-width">
             <mat-label>비밀번호</mat-label>
-            <input type="password" matInput [(ngModel)]="password" [formControl]="passwordFormControl">
+            <input matInput [(ngModel)]="password" [formControl]="passwordFormControl">
             <mat-error *ngIf="passwordFormControl.hasError('required')">
-                비밀번호를 입력하세요
+                비밀번호를 입력하세요.
             </mat-error>
         </mat-form-field>
         <br>
 
         <mat-button-toggle-group name="gender" aria-label="Gender">
-            <mat-button-toggle value="man">남</mat-button-toggle>
-            <mat-button-toggle value="woman">여</mat-button-toggle>
+            <mat-button-toggle value="man" (click)="clickMan()">남</mat-button-toggle>
+            <mat-button-toggle value="woman" (click)="clickWoman()">여</mat-button-toggle>
         </mat-button-toggle-group>
         
     </mat-card-content>

@@ -8,16 +8,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FirebaseService } from './firebase.service';
 import { EnrollComponent } from './enroll/enroll.component';
+import { BuyComponent } from './buy/buy.component';
+import { SellComponent } from './sell/sell.component';
+import { ClothMenComponent } from './cloth-men/cloth-men.component';
+import { ClothWomenComponent } from './cloth-women/cloth-women.component';
+import { ShoesComponent } from './shoes/shoes.component';
+import { BagComponent } from './bag/bag.component';
+import { PerfumeComponent } from './perfume/perfume.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { AccessoryComponent } from './accessory/accessory.component';
+import { WatchComponent } from './watch/watch.component';
 
 const fireEnvironment = {
   production: true,
@@ -37,6 +47,15 @@ const routes : Routes = [
   { path : 'home', component : HomeComponent },
   { path : 'login', component : LoginComponent },
   { path : 'enroll', component : EnrollComponent },
+  { path : 'buy', component : BuyComponent },
+  { path : 'cloth_men', component : ClothMenComponent },
+  { path : 'cloth_women', component : ClothWomenComponent },
+  { path : 'shoes', component : ShoesComponent },
+  { path : 'bag', component : BagComponent },
+  { path : 'perfume', component : PerfumeComponent },
+  { path : 'wallet', component : WalletComponent },
+  { path : 'accessory', component : AccessoryComponent },
+  { path : 'watch', component : WatchComponent },
 ]
 
 @NgModule({
@@ -44,7 +63,17 @@ const routes : Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    EnrollComponent
+    EnrollComponent,
+    BuyComponent,
+    SellComponent,
+    ClothMenComponent,
+    ClothWomenComponent,
+    ShoesComponent,
+    BagComponent,
+    PerfumeComponent,
+    WalletComponent,
+    AccessoryComponent,
+    WatchComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +87,7 @@ const routes : Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatButtonToggleModule,
+    MatMenuModule,
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
