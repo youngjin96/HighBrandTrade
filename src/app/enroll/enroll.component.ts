@@ -1,5 +1,16 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Timestamp } from 'rxjs';
+
+export class User {
+  name !: string;
+  birth !: Timestamp<any>;
+  email !: string;
+  password !: string;
+  gender !: string;
+}
 
 @Component({
   selector: 'app-enroll',
@@ -8,11 +19,10 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class EnrollComponent implements OnInit {
   name !: string;
-  birth !: string;
+  birth !: Timestamp<any>;
   email !: string;
   password !: string;
   gender !: string;
-  isFull = false;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -23,30 +33,36 @@ export class EnrollComponent implements OnInit {
     Validators.required,
   ]);
 
-  birthFormControl = new FormControl('', [
-    Validators.maxLength(6),
-    Validators.minLength(6),
-    Validators.required,
-  ]);
-
   passwordFormControl = new FormControl('', [
     Validators.required,
   ]);
-  
-  constructor() { }
+
+  public userForm !: FormGroup;
+
+  constructor(
+    private database : AngularFirestore,
+    public formBuilder: FormBuilder,
+    ) {this.userForm = this.formBuilder.group({
+        name: [''],
+        birth: [''],
+        email: [''],
+        password: [''],
+        gender: ['']
+      })
+     }
+
+  createUser(user: User) {
+    return new Promise<any>((resolve, reject) =>{
+      this.database
+        .collection("user")
+        .add(user)
+        .then(response => { console.log(response) }, error => reject(error));
+    });
+  }
 
   clickEnroll(){
-    console.log(this.name, this.birth, this.email, this.password);
-    if(this.name === undefined || this.birth === undefined || this.email === undefined || this.password === undefined){
-      console.log("fail");
-      console.log(this.isFull);
-      alert("회원가입을 다시 진행해주세요.")
-    } 
-    else{
-      console.log("success");
-      this.isFull = true;
-      console.log(this.isFull);
-    }
+    this.createUser(this.userForm.value);
+    console.log("success");
   }
 
   clickMan(){

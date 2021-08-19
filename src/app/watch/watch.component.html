@@ -1,1 +1,18 @@
-<p>watch works!</p>
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer mode="side" style="width: 20%;" opened>
+        <mat-form-field>
+            <input matInput placeholder="Search" style="width: 50px;">
+        </mat-form-field>
+         <div *ngFor="let brand of collections">
+            <button mat-button matTooltip="{{brand.brand_name}}" (click)="getUrl(brand.image_url)" style="font-size: 20px;"> {{brand.brand_name}} </button>
+        </div>
+        
+    </mat-drawer>
+  
+    <mat-drawer-content>
+        <button mat-button (click)="drawer.toggle()">List</button>
+        <div style="text-align: center;">
+            <img *ngIf="brandImageUrl" src="{{brandImageUrl}}" style="aspect-ratio: 16/9; height:150px;" >
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

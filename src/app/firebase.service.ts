@@ -8,11 +8,6 @@ export class FirebaseService {
   private dataBase: AngularFirestore;
   private itemsCollection !: AngularFirestoreCollection<any>;
 
-  //저장소(나중에 데이터베이스 서버)
-  private readonly storage = {
-    id: 'admin',
-    passwd: '1234'
-  }
   constructor(db: AngularFirestore) {   //모듈에서 만들어진 파이어 베이스 접속관련 객체
     this.dataBase = db;
   }
@@ -39,4 +34,4 @@ export class FirebaseService {
 //   service.getItem("brand").valueChanges().subscribe( arg => {
 //     console.log(arg);
 //   });
-// }  
+// }

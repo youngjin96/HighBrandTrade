@@ -9,6 +9,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -18,8 +22,6 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FirebaseService } from './firebase.service';
 import { EnrollComponent } from './enroll/enroll.component';
-import { BuyComponent } from './buy/buy.component';
-import { SellComponent } from './sell/sell.component';
 import { ClothMenComponent } from './cloth-men/cloth-men.component';
 import { ClothWomenComponent } from './cloth-women/cloth-women.component';
 import { ShoesComponent } from './shoes/shoes.component';
@@ -47,7 +49,6 @@ const routes : Routes = [
   { path : 'home', component : HomeComponent },
   { path : 'login', component : LoginComponent },
   { path : 'enroll', component : EnrollComponent },
-  { path : 'buy', component : BuyComponent },
   { path : 'cloth_men', component : ClothMenComponent },
   { path : 'cloth_women', component : ClothWomenComponent },
   { path : 'shoes', component : ShoesComponent },
@@ -64,8 +65,6 @@ const routes : Routes = [
     LoginComponent,
     HomeComponent,
     EnrollComponent,
-    BuyComponent,
-    SellComponent,
     ClothMenComponent,
     ClothWomenComponent,
     ShoesComponent,
@@ -88,8 +87,12 @@ const routes : Routes = [
     ReactiveFormsModule,
     MatButtonToggleModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTooltipModule,
+    MatSidenavModule,
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
