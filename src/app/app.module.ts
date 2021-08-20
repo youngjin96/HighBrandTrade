@@ -14,8 +14,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
+import { AuthService } from "./shared/services/auth.service";
+import { AuthGuard } from "./shared/guard/auth.guard";
+import { environment } from '../environments/environment';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +35,9 @@ import { PerfumeComponent } from './perfume/perfume.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { AccessoryComponent } from './accessory/accessory.component';
 import { WatchComponent } from './watch/watch.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MyPageComponent } from './my-page/my-page.component';
 
 const fireEnvironment = {
   production: true,
@@ -57,6 +65,9 @@ const routes : Routes = [
   { path : 'wallet', component : WalletComponent },
   { path : 'accessory', component : AccessoryComponent },
   { path : 'watch', component : WatchComponent },
+  { path : 'forgot-password', component: ForgotPasswordComponent },
+  { path : 'verify-email', component: VerifyEmailComponent },
+  { path : 'my-page', component: MyPageComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({
@@ -72,7 +83,10 @@ const routes : Routes = [
     PerfumeComponent,
     WalletComponent,
     AccessoryComponent,
-    WatchComponent
+    WatchComponent,
+    VerifyEmailComponent,
+    ForgotPasswordComponent,
+    MyPageComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +95,7 @@ const routes : Routes = [
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(fireEnvironment.firebase, '/'),   //파이어 베이스 모듈 사용
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MatCardModule,
     MatInputModule,
     FormsModule,
@@ -92,7 +107,8 @@ const routes : Routes = [
     MatTooltipModule,
     MatSidenavModule,
   ],
-  providers: [FirebaseService, MatDatepickerModule],
-  bootstrap: [AppComponent]
+  providers: [FirebaseService, MatDatepickerModule, AuthService],
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }

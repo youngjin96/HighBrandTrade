@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { AuthService } from "../shared/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginComponent implements OnInit {
     Validators.email,
   ]);
   
-
+  constructor(
+    public authService: AuthService
+  ) { }
+  
   ngOnInit(): void {
   }
 

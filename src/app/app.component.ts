@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from "./shared/services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HBT';
-  // undefined가 허용이 될 수 있게 ?를 붙여야한다.
+  
+  constructor(
+    public authService: AuthService
+  ) { }
   
 }

@@ -7,16 +7,22 @@
     <mat-card-content>
         <mat-form-field class="example-full-width" >
             <mat-label>Email</mat-label>
-            <input matInput>
+            <input matInput #userEmail>
         </mat-form-field>
         <br>
         <mat-form-field class="example-full-width">
             <mat-label>Password</mat-label>
-            <input matInput>
+            <input matInput #userPwd>
         </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button [routerLink]="['/enroll']" routerLinkActive="active">회원가입</button>
-      <button mat-button>로그인</button>
+      <button mat-button (click)="authService.SignIn(userEmail.value, userPwd.value)">로그인</button>
     </mat-card-actions>
+    <div class="formGroup">
+      <button mat-raised-button class="btn googleBtn" (click)="authService.GoogleAuth()">
+        <i class="fab fa-google-plus-g"></i>
+        Continue with Google
+      </button>
+    </div>
 </mat-card>
