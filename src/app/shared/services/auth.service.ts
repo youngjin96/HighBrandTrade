@@ -120,13 +120,9 @@ export class AuthService {
     })
   }
 
-  // 로그아웃 기능
-  LogOut(){
-    this.isLogged = false;
-  }
-
-  // 탈퇴 기능
+  // 로그아웃
   SignOut() {
+    this.isLogged = false;
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['home']);

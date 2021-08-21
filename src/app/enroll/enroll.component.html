@@ -37,7 +37,7 @@
     <!-- 회원가입 버튼 -->
     <mat-card-actions>
         <button mat-button *ngIf="!emailFormControl.valid || !passwordFormControl1.valid" disabled>회원가입</button>
-        <button mat-button *ngIf="emailFormControl.valid && passwordFormControl1.valid" [routerLink]="['/login']" routerLinkActive="active" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd2.value)">회원가입</button>
+        <button mat-button *ngIf="emailFormControl.valid && passwordFormControl1.valid" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd2.value)">회원가입</button>
     </mat-card-actions>
 </mat-card>
 

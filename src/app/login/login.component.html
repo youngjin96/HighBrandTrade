@@ -15,14 +15,17 @@
             <input matInput #userPwd>
         </mat-form-field>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button [routerLink]="['/enroll']" routerLinkActive="active">회원가입</button>
-      <button mat-button (click)="authService.SignIn(userEmail.value, userPwd.value)">로그인</button>
-    </mat-card-actions>
     <div class="formGroup">
       <button mat-raised-button class="btn googleBtn" (click)="authService.GoogleAuth()">
         <i class="fab fa-google-plus-g"></i>
         Continue with Google
       </button>
     </div>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/enroll']" routerLinkActive="active">회원가입</button>
+      <button mat-button (click)="authService.SignIn(userEmail.value, userPwd.value)">로그인</button>
+      <br>
+      <button mat-button [routerLink]="['/forgot-password']" routerLinkActive="router-link-active">비밀번호 찾기</button>
+    </mat-card-actions>
+    
 </mat-card>

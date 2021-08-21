@@ -67,7 +67,8 @@ const routes : Routes = [
   { path : 'watch', component : WatchComponent },
   { path : 'forgot-password', component: ForgotPasswordComponent },
   { path : 'verify-email', component: VerifyEmailComponent },
-  { path : 'my-page', component: MyPageComponent, canActivate: [AuthGuard] },
+  // TODO GUARD , canActivate: [AuthGuard]
+  { path : 'my-page', component: MyPageComponent },
 ]
 
 @NgModule({
