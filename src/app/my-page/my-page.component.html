@@ -1,45 +1,39 @@
-  <!-- Sidebar navigation -->
-  <div class="container-fluid">
-    <div class="row">
-  
-      <nav class="col-md-2 d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active">
-                <i class="fas fa-user"></i>User Profile
-              </a>
-            </li>
-            
-          </ul>
-        </div>
-      </nav>
-  
-      <!-- Main content -->
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="inner-adjust">
-  
-          <div class="pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">User Profile</h1>
-          </div>
-          <!-- Show user data when logged in -->
-          <div class="row" *ngIf="authService.userData as user">
-            <div class="col-md-12">
-              <div class="media">
-                <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/img/dummy-user.jpg'}}"
-                  alt="{{user.displayName}}">
-                <div class="media-body">
-                  <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-                  <p>User ID: <strong>{{user.uid}}</strong></p>
-                  <p>Email: <strong>{{user.email}}</strong></p>
-                  <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-      </main>
-  
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened style="width: 150px;">
+    <button mat-button style="padding: 10px 35px 10px;">User Profile</button>
+  </mat-drawer>
+  <mat-drawer-content *ngIf="authService.userData as user">
+    <!--
+      <img class="align-self-start mr-4 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/img/dummy-user.jpg'}}" alt="{{user.displayName}}">
+    -->
+    <div>
+      <mat-form-field style="margin-top: 10px; margin-left: 40px;">
+        <mat-label>닉네임 : {{(user.displayName) ? user.displayName : '없음'}}</mat-label>
+        <input matInput [(ngModel)]="nickName">
+      </mat-form-field>
+      <button mat-raised-button (click)="changeNickName()" style="margin-left: 10px; height: 40px;">변경</button>
     </div>
-  </div>
+
+    <div>
+      <mat-form-field style="margin-top: 10px; margin-left: 40px;">
+        <mat-label>성별 : {{(user.gender) ? user.gender : '없음'}}</mat-label>
+        <mat-select>
+          <mat-option value="man">남</mat-option>
+          <mat-option value="woman">여</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button style="margin-left: 10px; height: 40px;">변경</button>
+    </div>
+
+    <div>
+      <mat-form-field style="margin-top: 10px; margin-left: 40px; width:180px">
+        <mat-label>생년월일 : {{(user.birth) ? user.birth : '없음'}}</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="birth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button (click)="changeBirth()" style="margin-left: 10px; height: 40px;">변경</button>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

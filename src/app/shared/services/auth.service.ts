@@ -11,8 +11,6 @@ import firebase from 'firebase/app';
 export class AuthService {
   // Save logged in user data
   userData: any;
-  // 로그인 여부
-  isLogged = false;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -42,7 +40,6 @@ export class AuthService {
           this.router.navigate(['home']);
         });
         this.SetUserData(result.user);
-        this.isLogged = true;
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -113,7 +110,8 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      
     }
     return userRef.set(userData, {
       merge: true
@@ -122,7 +120,6 @@ export class AuthService {
 
   // 로그아웃
   SignOut() {
-    this.isLogged = false;
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['home']);

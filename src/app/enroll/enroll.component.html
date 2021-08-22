@@ -13,31 +13,25 @@
         </mat-form-field>
         <br>
         <!-- 비밀번호 칸 -->
-        <mat-form-field class="example-full-width">
-            <mat-label>비밀번호</mat-label>
-            <input matInput [formControl]="passwordFormControl1" #userPwd1 required>
-            <mat-error *ngIf="passwordFormControl1.hasError('required') && !passwordFormControl1.hasError('min')">
+        <mat-form-field style="width: 180px;">     
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" #userPwd required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="passwordFormControl.hasError('required') && !passwordFormControl.hasError('min')">
                 비밀번호를 입력하세요.
             </mat-error>
-            <mat-error *ngIf="passwordFormControl1.hasError('minlength')">
+            <mat-error *ngIf="passwordFormControl.hasError('minlength')">
                 8자리 이상 입력하세요.
             </mat-error>
         </mat-form-field>
         <br>
-        <!-- 비밀번호 확인 칸 -->
-        <mat-form-field class="example-full-width">
-            <mat-label>비밀번호 확인</mat-label>
-            <input matInput [formControl]="passwordFormControl2" #userPwd2 required>
-            <!-- TODO 비밀번호 일치하지 않을 때 작동하지 않음-->
-            <mat-error *ngIf="userPwd1.value != userPwd2.value">
-                비밀번호가 일치하지 않습니다.
-            </mat-error>
-        </mat-form-field>
     </mat-card-content>
     <!-- 회원가입 버튼 -->
     <mat-card-actions>
-        <button mat-button *ngIf="!emailFormControl.valid || !passwordFormControl1.valid" disabled>회원가입</button>
-        <button mat-button *ngIf="emailFormControl.valid && passwordFormControl1.valid" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd2.value)">회원가입</button>
+        <button mat-button *ngIf="emailFormControl.invalid || passwordFormControl.invalid" disabled>회원가입</button>
+        <button mat-button *ngIf="emailFormControl.valid && passwordFormControl.valid" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">회원가입</button>
     </mat-card-actions>
 </mat-card>
 

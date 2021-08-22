@@ -8,22 +8,19 @@ import { FormControl, Validators} from '@angular/forms';
   styleUrls: ['./enroll.component.css']
 })
 export class EnrollComponent implements OnInit {
+  hide = true;
+  
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-  passwordFormControl1 = new FormControl('', [
+  passwordFormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(8),
   ]);
 
-  passwordFormControl2 = new FormControl('', [
-    Validators.required,
-  ]);
-
   constructor (public authService: AuthService) {}
-
 
   ngOnInit(): void {
   }

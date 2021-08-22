@@ -8,6 +8,8 @@ import { AuthService } from "../shared/services/auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
+  
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
