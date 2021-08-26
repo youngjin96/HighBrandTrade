@@ -83,7 +83,10 @@ export class MyPageComponent implements OnInit {
     const user = await this.afAuth.currentUser;
     user.delete().then(() => {
       console.log("유저 삭제");
+      localStorage.removeItem('user');
+      localStorage.removeItem('userUid');
       this.router.navigate(['/login']);
+      location.reload();
     }).catch((error) => {
       console.log(error);
     });
