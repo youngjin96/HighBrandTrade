@@ -26,8 +26,7 @@ export class AuthService {
           this.isLoggedin = true;
           localStorage.setItem('user', JSON.stringify(this.userData));
           localStorage.setItem('userUid', JSON.stringify(this.userData.uid));
-          JSON.parse(localStorage.getItem('user'));
-          JSON.parse(localStorage.getItem('userUid'));
+          localStorage.setItem('emailVerified', JSON.stringify(this.userData.emailVerified));
           console.log("service - user's email is : ", JSON.stringify(this.userData.email));
         } else {
           console.log("authService : 유저 없음");
@@ -36,6 +35,7 @@ export class AuthService {
     })
 
   }
+  
 
   // 로그인 기능
   SignIn(email: string, password: string) {

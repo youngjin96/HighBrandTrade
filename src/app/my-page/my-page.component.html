@@ -10,9 +10,9 @@
     <div class="userProfile-field" *ngIf="isClickUserProfile" style="margin-left: 100px; margin-top: 50px;">
       <div class="emailVerified-field" style="margin-top: 10px; margin-left: 40px;">
         <span>
-          이메일 인증 : {{(user.emailVerified) ? '완료' : '안됨'}}
+          이메일 인증 : {{(emailVerified) ? '완료' : '안됨'}}
         </span>
-        <button *ngIf="!user.emailVerified" mat-raised-button (click)="authService.SendVerificationMail()" style="margin-left: 80px; height: 40px;">메일 전송</button>
+        <button *ngIf="!emailVerified" mat-raised-button (click)="authService.SendVerificationMail()" style="margin-left: 80px; height: 40px;">메일 전송</button>
       </div>
 
       <div class="nickName-field" style="margin-top: 10px; margin-left: 40px;">

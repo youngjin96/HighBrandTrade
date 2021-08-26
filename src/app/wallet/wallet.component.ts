@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wallet',
@@ -11,10 +12,18 @@ export class WalletComponent implements OnInit {
   collections = new Array();
   brandImageUrl : string;
 
-  constructor(private db : AngularFirestore) {  
-    this.getItem('brand').subscribe((res) => {     
-      this.collections = res;
-    });
+  constructor(
+    private db : AngularFirestore,
+    public router : Router,
+    ) {  
+    if (JSON.parse(localStorage.getItem('emailVerified')) && localStorage.getItem('user')){
+      this.getItem('brand').subscribe((res) => {     
+        this.collections = res;
+      });
+    } else{
+      alert("이메일 인증을 해주세요.");
+      router.navigate(['/my-page']);
+    }
   }
 
   getItem(db_name){  // getItem() 의 인자로 들어가는 이름의 collection에 접근을 할 거라고 설정

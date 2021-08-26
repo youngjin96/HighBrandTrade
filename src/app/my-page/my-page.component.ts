@@ -21,6 +21,7 @@ export class MyPageComponent implements OnInit {
   isClickUserProfile: boolean;
   isClickGetOut: boolean;
   userUid = localStorage.getItem('userUid');
+  emailVerified = JSON.parse(localStorage.getItem('emailVerified'));
   splitUserUid: any;
 
   constructor(
@@ -35,6 +36,7 @@ export class MyPageComponent implements OnInit {
       this.getItem('users').subscribe((res) => {
         this.collections = res;
       });
+      this.isEmailVerified();
     } else {
       alert("로그인해주세요.");
       router.navigate(['/login']);
@@ -43,12 +45,14 @@ export class MyPageComponent implements OnInit {
 
   getItem(db_name: string) {
     this.itemCollection = this.db.collection<any>(db_name, (ref: CollectionReference) => {
-      return ref.where('uid', '==', this.splitUserUid);
+      return ref.where('uid', '==', JSON.parse(localStorage.getItem('userUid')));
     });
     return this.itemCollection.valueChanges();
   }
 
-
+  async isEmailVerified() {
+    const res = await this.db.collection('users').doc(this.splitUserUid).set({ emailVerified: this.emailVerified }, { merge: true });
+  }
   async changeNickName() {
     const res = await this.db.collection('users').doc(this.splitUserUid).set({ nickName: this.nickName }, { merge: true });
   }
