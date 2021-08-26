@@ -2,18 +2,19 @@
     <div class="displayTableCell">
   
       <div class="authBlock">
-        <h3>Thank You for Registering</h3>
+        <h3>회원가입을 해주셔서 감사합니다.</h3>
   
         <div class="formGroup" *ngIf="authService.userData as user">
-          <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-          <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+          <p class="text-center">확인 메일을 <strong>{{user.email}}</strong>에 보내드렸습니다.</p>
+          <p class="text-center">메일을 확인해 링크를 클릭해주세요.</p>
         </div>
         
         <!-- Calling SendVerificationMail() method using authService Api -->
         <div class="formGroup">
-          <button mat-raised-button color="primary" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
+          <span>메일이 오지 않습니까?</span>
+          <button mat-raised-button color="primary" class="btn btnPrimary" (click)="authService.SendVerificationMail()" style="margin-left: 15px;">
             <i class="fas fa-redo-alt"></i>
-            Resend Verification Email
+            재전송
           </button>
         </div>
   
@@ -21,7 +22,7 @@
   
       <div class="redirectToLogin">
           <br>
-        <span>Go back to?<button mat-raised-button color="primary" class="redirect" routerLink="/login" style="margin-left:  15px;">Login</button></span>
+        <span>홈페이지로 돌아가시겠습니까?<button mat-raised-button color="primary" class="redirect" routerLink="/home" style="margin-left:  15px;">Home</button></span>
       </div>
   
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from "../shared/services/auth.service";
 
 @Component({
@@ -16,8 +17,13 @@ export class LoginComponent implements OnInit {
   ]);
   
   constructor(
-    public authService: AuthService
-  ) { }
+    public authService: AuthService,
+    public router: Router
+  ) {
+    if(localStorage.getItem('user')){
+      router.navigate(['/home']);
+    }
+   }
   
   ngOnInit(): void {
   }

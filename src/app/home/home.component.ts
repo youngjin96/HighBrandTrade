@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public isLoggedin : boolean;
 
-  constructor() { }
+  constructor(
+    router : Router,
+  ) {
+    if(localStorage.getItem('user')){
+      console.log("HomeComponent, userUid :",localStorage.getItem('userUid'));
+      this.isLoggedin = true;
+    } else{
+      alert("로그인해주세요.");
+      router.navigate(['/login']);
+      console.log("HomeComponent, userUid :",localStorage.getItem('user'));
+    }
+  }
 
   ngOnInit(): void {
   }

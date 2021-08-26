@@ -57,7 +57,7 @@ const fireEnvironment = {
 }
 
 const routes : Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path : 'home', component : HomeComponent },
   { path : 'login', component : LoginComponent },
   { path : 'enroll', component : EnrollComponent },
@@ -97,7 +97,7 @@ const routes : Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {onSameUrlNavigation : 'reload', enableTracing : false}),
     AngularFireModule.initializeApp(fireEnvironment.firebase, '/'),   //파이어 베이스 모듈 사용
     AngularFirestoreModule,
     AngularFireAuthModule,
