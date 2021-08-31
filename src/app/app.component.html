@@ -2,7 +2,7 @@
 <button mat-button [routerLink]="['/home']" routerLinkActive="active">Home</button>
 
 <!-- Buy Button -->
-<button mat-button [matMenuTriggerFor]="menu">Buy</button>
+<button mat-button [matMenuTriggerFor]="menu">Trade</button>
 <mat-menu #menu="matMenu">
   <!-- Cloth for men Button -->  
   <button mat-menu-item [routerLink]="['/cloth_men']" routerLinkActive="active">Cloths for Men</button>
@@ -29,33 +29,6 @@
   <button mat-menu-item [routerLink]="['/watch']" routerLinkActive="active">Watch</button>
 </mat-menu>
 
-<!-- Sell Button -->
-<button mat-button [matMenuTriggerFor]="menu">Sell</button>
-<mat-menu #menu="matMenu">
-  <!-- Cloth for men Button -->
-  <button mat-menu-item [routerLink]="['/cloth_men']" routerLinkActive="active">Cloths for Men</button>
-  
-  <!-- Cloth for women Button -->
-  <button mat-menu-item [routerLink]="['/cloth_women']" routerLinkActive="active">Cloths for Women</button>
-  
-  <!-- Shoes 버튼 -->
-  <button mat-menu-item [routerLink]="['/shoes']" routerLinkActive="active">Shoes</button>
-  
-  <!-- Bag 버튼 -->
-  <button mat-menu-item [routerLink]="['/bag']" routerLinkActive="active">Bag</button>
-  
-  <!-- Perfume 버튼 -->
-  <button mat-menu-item [routerLink]="['/perfume']" routerLinkActive="active">Perfume</button>
-  
-  <!-- Wallet 버튼 -->
-  <button mat-menu-item [routerLink]="['/wallet']" routerLinkActive="active">Wallet</button>
-  
-  <!-- Accessory 버튼 -->
-  <button mat-menu-item [routerLink]="['/accessory']" routerLinkActive="active">Accessory</button>
-  
-  <!-- Watch 버튼 -->
-  <button mat-menu-item [routerLink]="['/watch']" routerLinkActive="active">Watch</button>
-</mat-menu>
 <button mat-button *ngIf="isLoggedin || authService.isLoggedin" (click)="authService.SignOut()" style='float: right;'>LogOut</button>
 <button mat-button *ngIf="isLoggedin || authService.isLoggedin" [routerLink]="['/my-page']" routerLinkActive="active" style='float: right;'>My page</button>
 

@@ -16,7 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatTableModule } from '@angular/material/table';
 
 import { AuthService } from "./shared/services/auth.service";
 import { AuthGuard } from "./shared/guard/auth.guard";
@@ -114,6 +114,7 @@ const routes : Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
+    MatTableModule,
   ],
   providers: [FirebaseService, MatDatepickerModule, AuthService],
   bootstrap: [AppComponent],

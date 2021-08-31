@@ -1,18 +1,41 @@
-<mat-drawer-container class="example-container">
-    <mat-drawer #drawer mode="side" style="width: 250px;" opened>
-        <mat-form-field>
-            <input matInput placeholder="Search" style="width: 50px;">
-        </mat-form-field>
-         <div *ngFor="let brand of collections">
-            <button mat-button matTooltip="{{brand.brand_name}}" (click)="getUrl(brand.image_url)" style="font-size: 20px;"> {{brand.brand_name}} </button>
-        </div>
-        
+<mat-drawer-container class="mat-container">
+    <mat-drawer #drawer mode="side" style="width: 260px;" opened>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 260px; height: 900px;">
+            <ng-container matColumnDef="brand_name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-form-field appearance="standard">
+                        <mat-label>
+                            <mat-icon style="margin-left: 10px;">search</mat-icon>
+                            <span style="margin-left: 10px;">
+                                Search
+                            </span>
+                        </mat-label>
+                        <input matInput (keyup)="applyFilter($event)" #input>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell class="onMouse" *matCellDef="let item">
+                    <button mat-button matTooltip="{{item.brand_name}}" (click)="getUrl(item.image_url)"
+                        style="font-size: 20px;">
+                        {{item.brand_name}}
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">There's no brand</td>
+            </tr>
+        </table>
+
     </mat-drawer>
-  
+
     <mat-drawer-content>
         <button mat-button (click)="drawer.toggle()">List</button>
         <div style="text-align: center;">
-            <img *ngIf="brandImageUrl" src="{{brandImageUrl}}" style="aspect-ratio: 16/9; height:150px;" >
+            <img *ngIf="brandImageUrl" src="{{brandImageUrl}}" style="aspect-ratio: 16/9; height:150px;">
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

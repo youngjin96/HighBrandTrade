@@ -27,7 +27,7 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(this.userData));
           localStorage.setItem('userUid', JSON.stringify(this.userData.uid));
           localStorage.setItem('emailVerified', JSON.stringify(this.userData.emailVerified));
-          console.log("service - user's email is : ", JSON.stringify(this.userData.email));
+          console.log("authService : 유저 있음,", JSON.stringify(this.userData.email));
         } else {
           console.log("authService : 유저 없음");
         }

@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
     router : Router,
   ) {
     if(localStorage.getItem('user')){
-      console.log("HomeComponent, userUid :",localStorage.getItem('userUid'));
+      console.log("HomeComponent : 유저 있음");
       this.isLoggedin = true;
     } else{
       alert("로그인해주세요.");
       router.navigate(['/login']);
-      console.log("HomeComponent, userUid :",localStorage.getItem('user'));
+      console.log("HomeComponent : 유저 없음");
     }
   }
 

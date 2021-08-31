@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/firestore';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./accessory.component.css']
 })
 export class AccessoryComponent implements OnInit {
-  private itemCollection !: AngularFirestoreCollection<any>;
+  private itemCollection : AngularFirestoreCollection<any>;
   collections = new Array();
-  brandImageUrl !: string;
+  brandImageUrl : string;
+  dataSource : MatTableDataSource<brands_data>;
+
+  displayColumn = [
+    'brand_name',
+  ]
 
   constructor(
     private db : AngularFirestore,
@@ -19,6 +25,7 @@ export class AccessoryComponent implements OnInit {
     if (JSON.parse(localStorage.getItem('emailVerified')) && localStorage.getItem('user')){
       this.getItem('brand').subscribe((res) => {     
         this.collections = res;
+        this.dataSource = new MatTableDataSource(this.collections);
       });
     } else{
       alert("이메일 인증을 해주세요.");
@@ -26,18 +33,27 @@ export class AccessoryComponent implements OnInit {
     }
   }
 
-  getItem(db_name : string){  // getItem() 의 인자로 들어가는 이름의 collection에 접근을 할 거라고 설정
+  getItem(db_name : string){
     this.itemCollection = this.db.collection<any>(db_name, (ref : CollectionReference) => {
-      return ref.where('product', 'array-contains', 'accessory').orderBy('brand_name');
+      return ref.where('product', 'array-contains', 'perfume').orderBy('brand_name');
     });
-    return this.itemCollection.valueChanges();  //리턴
+    return this.itemCollection.valueChanges();
   }
   
   getUrl(url : any){
     this.brandImageUrl = url;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toUpperCase();
+  }
+
   ngOnInit(): void {
   }
 
+}
+
+export interface brands_data{
+  brand_name : string;
 }
